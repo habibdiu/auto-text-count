@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Live Character Count</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  textarea, input {
-    width: 300px;
-    padding: 8px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
-  input[readonly] {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Character Count</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    textarea, input {
+      width: 300px;
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+    input[readonly] {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
 
-<label for="inputText">Enter Text:</label>
-<textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
 
-<label for="countOutput">Character Count / 5:</label>
-<input type="text" id="countOutput" readonly />
+  <label for="inputText">Enter Text:</label>
+  <textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
 
-<script>
-  const textarea = document.getElementById('inputText');
-  const output = document.getElementById('countOutput');
+  <label for="countOutput">Character Count / 5:</label>
+  <input type="text" id="countOutput" readonly />
 
-  textarea.addEventListener('input', () => {
-    const length = textarea.value.length;
-    const result = Math.floor(length / 5);
-    output.value = result;
-  });
-</script>
+ 
+  <label for="mobileInput">Enter Mobile Numbers (e.g. 11 digits each):</label>
+  <input type="text" id="mobileInput" placeholder="Enter numbers only..." />
+
+  <label for="mobileCountOutput">Mobile Count / 11 Digits:</label>
+  <input type="text" id="mobileCountOutput" readonly />
+
+  <script>
+    const textarea = document.getElementById('inputText');
+    const output = document.getElementById('countOutput');
+    const mobileInput = document.getElementById('mobileInput');
+    const mobileOutput = document.getElementById('mobileCountOutput');
+
+   
+    textarea.addEventListener('input', () => {
+      const length = textarea.value.length;
+      output.value = Math.floor(length / 5);
+    });
+
+    
+    mobileInput.addEventListener('input', () => {
+      const numberOnly = mobileInput.value.replace(/\D/g, '');
+      const count = Math.floor(numberOnly.length / 11);
+      mobileOutput.value = count;
+    });
+  </script>
 
 </body>
 </html>
