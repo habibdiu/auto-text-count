@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live Character Count</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  textarea, input {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  input[readonly] {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+  }
+</style>
+</head>
+<body>
+
+<label for="inputText">Enter Text:</label>
+<textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
+
+<label for="countOutput">Character Count / 5:</label>
+<input type="text" id="countOutput" readonly />
+
+<script>
+  const textarea = document.getElementById('inputText');
+  const output = document.getElementById('countOutput');
+
+  textarea.addEventListener('input', () => {
+    const length = textarea.value.length;
+    const result = Math.floor(length / 5);
+    output.value = result;
+  });
+</script>
+
+</body>
+</html>
